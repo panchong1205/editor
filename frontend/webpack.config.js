@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -55,6 +56,12 @@ module.exports = {
                 }],
             },
             {
+                loader: 'image-webpack-loader',// 压缩图片文件
+                options: {
+                    bypassOnDebug: true,
+                }
+            },
+            {
                 test: /\.(woff|woff2|svg|eot|ttf)$/,
                 use: ['file-loader'],
             }
@@ -75,6 +82,14 @@ module.exports = {
             template: path.join(__dirname, '/index-tmpl.html'),
             excludeChunks: ['front'],
         }),
+        new CleanWebpackPlugin(
+            ['dist'], // 匹配删除的文件
+            {
+                root: __dirname,
+                verbose: true,
+                dry: false,
+            }
+        ),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),     // 基本目录结构（服务器根目录）
