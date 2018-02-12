@@ -22,7 +22,7 @@ module.exports = {
                         presets: ['env', 'react'],
                         plugins: [
                             'transform-runtime',
-                            ['import', { 'libraryName': 'antd', 'style': true }]
+                            ['import', { 'libraryName': 'antd', 'style': 'css' }]
                         ],
                     }
                 }
