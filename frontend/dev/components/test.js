@@ -13,7 +13,7 @@ export default class Test extends Component{
                 <Button key="2">Default</Button>,
                 <Button type="dashed" key="3">Dashed</Button>,
                 <Button type="danger" key="4">Danger</Button>,
-                <div className="container" key="5">ceshiy</div>,
+                <div className="container" key="5">测试一下</div>,
             <img src={require('../../image/img1.png')} alt="图片加载失败" key="6"/>,
             <img src={require('../../image/img2.png')} alt="图片加载失败" key="7"/>,
             ];

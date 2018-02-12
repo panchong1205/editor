@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './dev/app';
 import Test from './dev/components/test';
+import './font/font.less';
 
 ReactDOM.render(
     <App>
