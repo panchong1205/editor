@@ -78,7 +78,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin(), //js压缩
         new webpack.DefinePlugin({
             DEV_STATE: JSON.stringify(JSON.parse(process.env.DEV || 'false'))
         }),
