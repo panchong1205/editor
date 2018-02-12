@@ -29,7 +29,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'less-loader'] }),
+                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader'] }),
             },
             {
                 test: /\.less$/,
