@@ -20,7 +20,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react'],
+                        presets: ['env', 'react', 'stage-0'],
                         plugins: [
                             'transform-runtime',
                             ['import', { 'libraryName': 'antd', 'style': 'css' }]
