@@ -24,7 +24,7 @@ class Editor extends Component{
             message.error('请选择要删除的元素');
             return;
         }
-        store.dispatch(deleteElement(this.props.focusId));
+        store.dispatch(deleteElement());
     };
     blur = e => {
         if (e.target === e.currentTarget) {// 防止其他click事件影响

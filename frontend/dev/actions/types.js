@@ -2,3 +2,4 @@
 export const ADD_ELEMENTS = 'ADD_ELEMENTS';
 export const DELETE_ELEMENTS = 'DELETE_ELEMENTS';
 export const CHANGE_FOCUS = 'CHANGE_FOCUS';
+export const CHANGE_SIZE = 'CHANGE_SIZE';

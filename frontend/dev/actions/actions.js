@@ -8,10 +8,9 @@ export function addElement(addElements) {
     }
 }
 
-export function deleteElement(deleteId) {
+export function deleteElement() {
     return {
         type: types.DELETE_ELEMENTS,
-        deleteId,
     }
 }
 
@@ -19,5 +18,12 @@ export function changeFocus(focusId) {
     return {
         type: types.CHANGE_FOCUS,
         focusId,
+    }
+}
+
+export function changeSize(styleSize) {
+    return {
+        type: types.CHANGE_SIZE,
+        styleSize,
     }
 }
