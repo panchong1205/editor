@@ -1,11 +1,11 @@
-/**created by panchong on 2018/2/24**/
+/**created by panchong on 2018/2/26**/
 import React, { Component } from 'react';
 import ResizableBox from 'react-resizable'
 import Draggable from 'react-draggable';
 import store from '../../../store';
 import { changeFocus } from '../../../actions/actions';
 
-class TextComponent extends Component{
+class ImageComponent extends Component{
     handleFocus = e => {
         e.stopPropagation();
         store.dispatch(changeFocus(this.props.item.id));
@@ -26,28 +26,25 @@ class TextComponent extends Component{
         console.log('Position: ', ui.position);
     };
     render() {
-        const { id, style, content } = this.props.item;
+        const { id, style, src } = this.props.item;
         const { focusId } = this.props;
         const { left, top} = style;
-        console.log(id);
-        console.log(focusId);
         return (
             <Draggable
                 axis="both"
-                handle=".textHandle"
+                handle=".imageHandle"
                 defaultPosition={{x: left, y: top}}
                 bounds="parent"
                 grid={[1, 1]}
                 onStart={this.handleStart}
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}>
-                <div className={`textHandle ${id === focusId ? 'focus' : ''}`}
+                <img className={`imageHandle ${id === focusId ? 'focus' : ''}`}
                      style={style}
-                     onClick={this.handleFocus}>
-                    {content}
-                </div>
+                     src={src}
+                     onClick={this.handleFocus}/>
             </Draggable>
         );
     }
 }
-export default TextComponent;
+export default ImageComponent;

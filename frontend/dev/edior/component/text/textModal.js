@@ -4,7 +4,7 @@ export default class textModal extends baseModal{
     constructor() {
         super();
         this.name = 'text';
-        this.content = '文字编辑';
+        this.content = '双击文字编辑';
         this.style = Object.assign({}, this.style, {
             width: 100,
             height: 30,

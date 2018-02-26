@@ -1,17 +1,23 @@
 /**created by panchong on 2018/2/24**/
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { message } from 'antd'
+import { message } from 'antd';
 import UndoRedo from './component/undoRedo';
 import store from '../store';
 import TextComponent from './component/text/textComponent';
-import { addElement, deleteElement, changeFocus } from '../actions/actions';
 import textModal from './component/text/textModal';
+import ImageComponent from './component/image/imageComponent';
+import imageModal from './component/image/imageModal';
+import { addElement, deleteElement, changeFocus } from '../actions/actions';
+import UploadFile from '../components/uploadFile';
 import './editor.less';
 
 class Editor extends Component{
-    add = () => {
+    addText = () => {
         store.dispatch(addElement(new textModal()));
+    };
+    addImage = src => {
+        store.dispatch(addElement(new imageModal(src)));
     };
     del = () => {
         if (!this.props.focusId) {
@@ -25,14 +31,36 @@ class Editor extends Component{
             store.dispatch(changeFocus(''));
         }
     };
+    handleStart = (event, ui) =>  {
+        console.log('Event: ', event);
+        console.log('Position: ', ui.position);
+    };
+
+    handleDrag = (event, ui) => {
+        console.log('Event: ', event);
+        console.log('Position: ', ui.position);
+    };
+
+    handleStop = (event, ui) => {
+        console.log('Event: ', event);
+        console.log('Position: ', ui.position);
+    };
     render() {
         return [
             <UndoRedo/>,
-            <button type="button" onClick={this.add}>
-                add
+            <button type="button" onClick={this.addText}>
+                添加文字
             </button>,
+            <UploadFile
+                type="button"
+                accept=".png, .jpeg, .jpg"
+                fileSize={100}
+                onChangeUrl={this.addImage}
+            >
+                <button type="button">添加图片</button>
+            </UploadFile>,
             <button type="button" onClick={this.del}>
-                delete
+                删除
             </button>,
             <div className="editorContainer" onClick={this.blur}>
                 {
@@ -43,11 +71,16 @@ class Editor extends Component{
                                     item={item}
                                     key={`element${index}`}
                                 />;
+                            case 'image': return <ImageComponent
+                                focusId={this.props.focusId}
+                                item={item}
+                                key={`element${index}`}
+                            />;
                             default: break;
                         }
                     })
                 }
-            </div>
+            </div>,
         ];
     }
 }
