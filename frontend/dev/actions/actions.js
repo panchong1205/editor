@@ -27,3 +27,22 @@ export function changeSize(styleSize) {
         styleSize,
     }
 }
+
+export function changePosition(position) {
+    return {
+        type: types.CHANGE_POSITION,
+        position,
+    }
+}
+
+export function setTop() {
+    return {
+        type: types.SET_TOP,
+    }
+}
+
+export function setBottom() {
+    return {
+        type: types.SET_BOTTOM,
+    }
+}

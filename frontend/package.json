@@ -38,11 +38,8 @@
     "moment": "2.20.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "react-drag": "2.0.0",
-    "react-draggable": "3.0.5",
     "react-redux": "5.0.6",
-    "react-resizable": "1.7.5",
-    "react-resizable-box": "2.1.0",
+    "react-rnd": "7.3.0",
     "react-router": "4.2.0",
     "redux": "3.7.2",
     "redux-undo": "0.6.1"

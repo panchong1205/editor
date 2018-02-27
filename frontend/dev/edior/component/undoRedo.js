@@ -4,6 +4,9 @@ import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import { connect } from 'react-redux'
 
 class UndoRedo extends Component{
+    constructor() {
+        super();
+    }
     render() {
         return [
             <button onClick={() => { this.props.onUndo(); }} disabled={!this.props.canUndo}>

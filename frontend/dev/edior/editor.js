@@ -8,42 +8,33 @@ import TextComponent from './component/text/textComponent';
 import textModal from './component/text/textModal';
 import ImageComponent from './component/image/imageComponent';
 import imageModal from './component/image/imageModal';
-import { addElement, deleteElement, changeFocus } from '../actions/actions';
+import { addElement, deleteElement, changeFocus, setTop, setBottom } from '../actions/actions';
 import UploadFile from '../components/uploadFile';
 import './editor.less';
 
 class Editor extends Component{
+    constructor() {
+        super();
+    }
     addText = () => {
         store.dispatch(addElement(new textModal()));
     };
     addImage = src => {
         store.dispatch(addElement(new imageModal(src)));
     };
+    setTop = () => {
+        store.dispatch(setTop());
+    };
+    setBottom = () => {
+        store.dispatch(setBottom());
+    };
     del = () => {
-        if (!this.props.focusId) {
-            message.error('请选择要删除的元素');
-            return;
-        }
         store.dispatch(deleteElement());
     };
     blur = e => {
         if (e.target === e.currentTarget) {// 防止其他click事件影响
             store.dispatch(changeFocus(''));
         }
-    };
-    handleStart = (event, ui) =>  {
-        console.log('Event: ', event);
-        console.log('Position: ', ui.position);
-    };
-
-    handleDrag = (event, ui) => {
-        console.log('Event: ', event);
-        console.log('Position: ', ui.position);
-    };
-
-    handleStop = (event, ui) => {
-        console.log('Event: ', event);
-        console.log('Position: ', ui.position);
     };
     render() {
         return [
@@ -59,10 +50,16 @@ class Editor extends Component{
             >
                 <button type="button">添加图片</button>
             </UploadFile>,
-            <button type="button" onClick={this.del}>
+            <button type="button" onClick={this.setTop} disabled={!this.props.focusId}>
+                设为顶层
+            </button>,
+            <button type="button" onClick={this.setBottom} disabled={!this.props.focusId}>
+                设为底层
+            </button>,
+            <button type="button" onClick={this.del} disabled={!this.props.focusId}>
                 删除
             </button>,
-            <div className="editorContainer" onClick={this.blur}>
+            <div className="editorContainer" id="editor" onClick={this.blur}>
                 {
                     this.props.elements.map((item, index) => {
                         switch (item.name) {

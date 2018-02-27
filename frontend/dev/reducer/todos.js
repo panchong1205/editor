@@ -5,6 +5,9 @@ import { ADD_ELEMENTS,
     DELETE_ELEMENTS,
     CHANGE_FOCUS,
     CHANGE_SIZE,
+    CHANGE_POSITION,
+    SET_TOP,
+    SET_BOTTOM,
 } from '../actions/types';
 
 
@@ -46,7 +49,45 @@ const todo = (state = initialState, action) => {
             elements: newElements.toJS(),
         });
     }
+    if (action.type === CHANGE_POSITION) {
+        const idx = elements.findIndex(item => item.id === focus.id);
+        const style = Object.assign({}, focus.style, action.position);
+        const newElement = Object.assign({}, focus, { style });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
+            focus: newElement,
+        });
+    }
+    if (action.type === SET_TOP) {
+        const idx = elements.findIndex(item => item.id === focus.id);
+        elements.map(item => {
+            item.style.zIndex = item.style.zIndex > 0 ? item.style.zIndex - 1 : 0;
+            return item;
+        });
+        const style = Object.assign({}, focus.style, {zIndex: elements.length});
+        const newElement = Object.assign({}, focus, { style });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
+            focus: newElement,
+        });
+    }
+    if (action.type === SET_BOTTOM) {
+        const idx = elements.findIndex(item => item.id === focus.id);
+        elements.map(item => {
+            item.style.zIndex = item.style.zIndex >= elements.length ? elements.length : item.style.zIndex + 1;
+            return item;
+        });
+        const style = Object.assign({}, focus.style, { zIndex: 0 });
+        const newElement = Object.assign({}, focus, { style });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
+            focus: newElement,
+        });
+    }
     return state;
-}
+};
 const undoableTodos = undoable(todo);
 export default undoableTodos;
