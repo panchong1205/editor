@@ -21,17 +21,10 @@ export function changeFocus(focusId) {
     }
 }
 
-export function changeSize(styleSize) {
+export function changeStyle(style) {
     return {
         type: types.CHANGE_SIZE,
-        styleSize,
-    }
-}
-
-export function changePosition(position) {
-    return {
-        type: types.CHANGE_POSITION,
-        position,
+        style,
     }
 }
 

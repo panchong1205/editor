@@ -4,8 +4,7 @@ import { fromJS, Map, List} from 'immutable';
 import { ADD_ELEMENTS,
     DELETE_ELEMENTS,
     CHANGE_FOCUS,
-    CHANGE_SIZE,
-    CHANGE_POSITION,
+    CHANGE_STYLE,
     SET_TOP,
     SET_BOTTOM,
 } from '../actions/types';
@@ -39,19 +38,9 @@ const todo = (state = initialState, action) => {
             focus: newFocus ? newFocus : {},
         });
     }
-    if (action.type === CHANGE_SIZE) {
+    if (action.type === CHANGE_STYLE) {
         const idx = elements.findIndex(item => item.id === focus.id);
-        const element = elements.find(item => item.id === focus.id);
-        const style = Object.assign({}, element.style, action.styleSize);
-        const newElement = Object.assign({}, element, { style });
-        newElements = fromJS(elements).set(idx, newElement);
-        return Object.assign({}, state, {
-            elements: newElements.toJS(),
-        });
-    }
-    if (action.type === CHANGE_POSITION) {
-        const idx = elements.findIndex(item => item.id === focus.id);
-        const style = Object.assign({}, focus.style, action.position);
+        const style = Object.assign({}, focus.style, action.style);
         const newElement = Object.assign({}, focus, { style });
         newElements = fromJS(elements).set(idx, newElement);
         return Object.assign({}, state, {

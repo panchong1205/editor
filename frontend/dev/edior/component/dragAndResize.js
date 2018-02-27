@@ -2,20 +2,20 @@
 import React, { Component } from 'react';
 import Rnd from 'react-rnd';
 import store from '../../store';
-import { changeFocus, changeSize, changePosition } from '../../actions/actions';
+import { changeFocus, changeStyle } from '../../actions/actions';
 
 export default class DragAndResize extends Component{
     handleFocus = () => {
         store.dispatch(changeFocus(this.props.item.id));
     };
     handleStop = (e, data) => {
-        store.dispatch(changePosition({
+        store.dispatch(changeStyle({
             top: data.y,
             left: data.x,
         }));
     };
     handleResize = (e, dir, ref, delta, position) => {
-        store.dispatch(changeSize({
+        store.dispatch(changeStyle({
             width: ref.offsetWidth,
             height: ref.offsetHeight,
         }));
