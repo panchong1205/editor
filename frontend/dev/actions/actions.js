@@ -23,7 +23,7 @@ export function changeFocus(focusId) {
 
 export function changeStyle(style) {
     return {
-        type: types.CHANGE_SIZE,
+        type: types.CHANGE_STYLE,
         style,
     }
 }
@@ -37,5 +37,28 @@ export function setTop() {
 export function setBottom() {
     return {
         type: types.SET_BOTTOM,
+    }
+}
+
+export function changeTextEditable(id, contentEditable) {
+    return {
+        type: types.CHANGE_TEXT_EDITABLE,
+        id,
+        contentEditable,
+    }
+}
+
+export function changeTextContent(id, content) {
+    return {
+        type: types.CHANGE_TEXT_CONTENT,
+        id,
+        content,
+    }
+}
+
+export function changeImageSrc(src) {
+    return {
+        type: types.CHANGE_IMAGE_SRC,
+        src
     }
 }

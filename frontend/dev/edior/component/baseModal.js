@@ -7,7 +7,7 @@ export default class baseModal{
         this.key = newElementId();
         this.style = {
             position: 'absolute',
-            zIndex: 0,
+            zIndex: 1,
             left: 0,
             top: 0,
         };

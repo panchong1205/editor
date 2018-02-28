@@ -5,6 +5,10 @@ import store from '../../store';
 import { changeFocus, changeStyle } from '../../actions/actions';
 
 export default class DragAndResize extends Component{
+    static defaultProps = {
+        enableResizing: true,
+        disableDragging: false,
+    };
     handleFocus = () => {
         store.dispatch(changeFocus(this.props.item.id));
     };
@@ -21,15 +25,14 @@ export default class DragAndResize extends Component{
         }));
     };
     render() {
-        const { focusId, item } = this.props;
-        const { id, style } = item;
+        const { item, enableResizing, disableDragging } = this.props;
+        const { style } = item;
         const { left, top, width, height, zIndex} = style;
         return (
             <Rnd
-                className={`${id === focusId ? 'focus' : ''}`}
                 style={{backgroundColor: '#fff'}}
                 dragAxis="both"
-                size={{ width,  height }}
+                size={{ width: width + 2,  height: height + 2 }}
                 position={{ x: left, y: top }}
                 z={zIndex}
                 minWidth={20}
@@ -41,6 +44,7 @@ export default class DragAndResize extends Component{
                 onResize={this.handleResize}
                 onDragStart={this.handleFocus}
                 onDragStop={this.handleStop}
+                disableDragging={disableDragging}
             >
                 {this.props.children}
             </Rnd>

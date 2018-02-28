@@ -7,6 +7,9 @@ import { ADD_ELEMENTS,
     CHANGE_STYLE,
     SET_TOP,
     SET_BOTTOM,
+    CHANGE_TEXT_EDITABLE,
+    CHANGE_TEXT_CONTENT,
+    CHANGE_IMAGE_SRC,
 } from '../actions/types';
 
 
@@ -51,7 +54,7 @@ const todo = (state = initialState, action) => {
     if (action.type === SET_TOP) {
         const idx = elements.findIndex(item => item.id === focus.id);
         elements.map(item => {
-            item.style.zIndex = item.style.zIndex > 0 ? item.style.zIndex - 1 : 0;
+            item.style.zIndex = item.style.zIndex >= elements.length ? elements.length - 1 : item.style.zIndex;
             return item;
         });
         const style = Object.assign({}, focus.style, {zIndex: elements.length});
@@ -65,7 +68,7 @@ const todo = (state = initialState, action) => {
     if (action.type === SET_BOTTOM) {
         const idx = elements.findIndex(item => item.id === focus.id);
         elements.map(item => {
-            item.style.zIndex = item.style.zIndex >= elements.length ? elements.length : item.style.zIndex + 1;
+            item.style.zIndex = item.style.zIndex === 0 ? item.style.zIndex + 1 : item.style.zIndex;
             return item;
         });
         const style = Object.assign({}, focus.style, { zIndex: 0 });
@@ -74,6 +77,33 @@ const todo = (state = initialState, action) => {
         return Object.assign({}, state, {
             elements: newElements.toJS(),
             focus: newElement,
+        });
+    }
+    if (action.type === CHANGE_TEXT_EDITABLE) {
+        const idx = elements.findIndex(item => item.id === action.id);
+        const element = elements.filter(item => item.id === action.id)[0];
+        const newElement = Object.assign({}, element, { contentEditable: action.contentEditable });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
+        });
+    }
+    if (action.type === CHANGE_TEXT_CONTENT) {
+        const idx = elements.findIndex(item => item.id === action.id);
+        const element = elements.filter(item => item.id === action.id)[0];
+        const newElement = Object.assign({}, element, { content: action.content });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
+        });
+    }
+    if (action.type === CHANGE_IMAGE_SRC) {
+        const idx = elements.findIndex(item => item.id === focus.id);
+        const element = elements.filter(item => item.id === focus.id)[0];
+        const newElement = Object.assign({}, element, { src: action.src });
+        newElements = fromJS(elements).set(idx, newElement);
+        return Object.assign({}, state, {
+            elements: newElements.toJS(),
         });
     }
     return state;

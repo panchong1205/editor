@@ -8,7 +8,7 @@ import TextComponent from './component/text/textComponent';
 import textModal from './component/text/textModal';
 import ImageComponent from './component/image/imageComponent';
 import imageModal from './component/image/imageModal';
-import { addElement, deleteElement, changeFocus, setTop, setBottom } from '../actions/actions';
+import { addElement, deleteElement, changeFocus, setTop, setBottom, changeImageSrc } from '../actions/actions';
 import UploadFile from '../components/uploadFile';
 import './editor.less';
 
@@ -21,6 +21,9 @@ class Editor extends Component{
     };
     addImage = src => {
         store.dispatch(addElement(new imageModal(src)));
+    };
+    changeImage = src => {
+        store.dispatch(changeImageSrc(src));
     };
     setTop = () => {
         store.dispatch(setTop());
@@ -49,6 +52,14 @@ class Editor extends Component{
                 onChangeUrl={this.addImage}
             >
                 <button type="button">添加图片</button>
+            </UploadFile>,
+            <UploadFile
+                type="button"
+                accept=".png, .jpeg, .jpg"
+                fileSize={100}
+                onChangeUrl={this.changeImage}
+            >
+                <button type="button" disabled={!this.props.focusId}>更换图片</button>
             </UploadFile>,
             <button type="button" onClick={this.setTop} disabled={!this.props.focusId}>
                 设为顶层

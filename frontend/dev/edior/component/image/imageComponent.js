@@ -11,7 +11,7 @@ class ImageComponent extends Component{
     };
     render() {
         const { focusId, item } = this.props;
-        const { style, src } = item;
+        const { style, src, id } = item;
         const { width, height} = style;
         return (
             <DragAndResize
@@ -23,6 +23,7 @@ class ImageComponent extends Component{
                         width,
                         height,
                     }}
+                    className={`${id === focusId ? 'focus' : ''}`}
                     src={`${src}`}
                     alt="图片"
                     onMouseDown={this.disableDrag}
