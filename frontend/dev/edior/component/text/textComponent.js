@@ -31,8 +31,7 @@ class TextComponent extends Component{
     render() {
         const { focusId, item } = this.props;
         const { style, content, contentEditable, id } = item;
-        const {width, height, lineHeight, fontSize, color, textAlign, position} = style;
-
+        const {lineHeight, fontSize, color, textAlign, position} = style;
         return (
             <DragAndResize
                 focusId={focusId}

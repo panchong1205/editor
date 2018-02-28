@@ -8,6 +8,7 @@ export default class DragAndResize extends Component{
     static defaultProps = {
         enableResizing: true,
         disableDragging: false,
+        className: '',
     };
     handleFocus = () => {
         store.dispatch(changeFocus(this.props.item.id));
@@ -25,11 +26,12 @@ export default class DragAndResize extends Component{
         }));
     };
     render() {
-        const { item, enableResizing, disableDragging } = this.props;
+        const { item, enableResizing, disableDragging, className } = this.props;
         const { style } = item;
         const { left, top, width, height, zIndex} = style;
         return (
             <Rnd
+                className={className}
                 style={{backgroundColor: '#fff'}}
                 dragAxis="both"
                 size={{ width: width + 2,  height: height + 2 }}

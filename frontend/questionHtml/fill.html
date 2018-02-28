@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填空题</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .editorBody{
+            width: 900px;
+            height: 1650px;
+            margin: auto;
+            border: solid 1px #cccccc;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id="fill" class="editorBody">
+</div>
+<script>
+    console.log(JSON.parse(localStorage.stem));
+    var elements = JSON.parse(localStorage.stem);
+    var newElements = '';
+    for(var i = 0; i < elements.length; i++) {
+        var style = '';
+        if (elements[i].name == 'text') {
+            style += "width:" + elements[i].style.width + "px;";
+            style += "height:" + elements[i].style.height + "px;";
+            style += "position:" + elements[i].style.position + ";";
+            style += "z-index:" + elements[i].style.zIndex + ";";
+            style += "top:" + elements[i].style.top + "px;";
+            style += "left:" + elements[i].style.left + "px;";
+            style += "color:" + elements[i].style.color + ";";
+            style += "font-size:" + elements[i].style.fontSize + "px;";
+            newElements += "<div style='"+ style + "'>" + elements[i].content + "</div>";
+        }
+    }
+    document.getElementById('fill').innerHTML = newElements;
+</script>
+</body>
+</html>

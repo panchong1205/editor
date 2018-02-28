@@ -9,10 +9,8 @@ export default class textModal extends baseModal{
         this.style = Object.assign({}, this.style, {
             width: 100,
             height: 30,
-            lineHeight: '30px',
             fontSize: 14,
             color: '#333',
-            textAlign: 'left',
         });
     }
 }

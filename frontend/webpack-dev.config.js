@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -79,6 +80,9 @@ module.exports = {
             template: path.join(__dirname, '/index-tmpl.html'),
             excludeChunks: ['front'],
         }),
+        new CopyWebpackPlugin([{
+            from: 'questionHtml/*', to: './',
+        }]),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),     // 基本目录结构（服务器根目录）

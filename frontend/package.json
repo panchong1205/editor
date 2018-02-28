@@ -34,6 +34,7 @@
     "antd": "3.2.0",
     "babel-runtime": "6.26.0",
     "clean-webpack-plugin": "0.1.18",
+    "copy-webpack-plugin": "^4.4.2",
     "immutable": "3.8.2",
     "moment": "2.20.1",
     "react": "16.2.0",
