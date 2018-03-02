@@ -25,8 +25,29 @@ class TextComponent extends Component{
             width,
             height,
         }));
-        store.dispatch(changeTextContent(this.props.item.id, e.target.innerHTML));
+        const html_content = e.target.innerHTML;
+        const dom_now = document.createElement('div');
+        dom_now.innerHTML = html_content;
+        const dom_span = dom_now.childNodes;
+        console.log(dom_span);
+        let text_show = '';
+        dom_span.forEach(item=>{
+            console.log('nodeName', item.nodeName);
+            console.log('nodeValue', item.nodeValue);
+            console.log('innerText', item.innerText);
+            text_show += this.contentChange(item);
+        });
+        store.dispatch(changeTextContent(this.props.item.id, text_show));
         this.changeEditableFalse();
+    };
+    contentChange = (item) => {
+        let text_show = '';
+        item.nodeName === '#text' ? text_show += item.nodeValue : null;
+        item.nodeName === 'BR' ? text_show += '<br/ >' : null;
+        item.nodeName === 'P' ? text_show += item.innerText + '<br/ >' : null;
+        item.nodeName === 'SPAN' ? text_show += item.innerText + '<br/ >' : null;
+        item.nodeName === 'DIV' ? text_show += item.innerText + '<br/ >' : null;
+        return text_show
     };
     render() {
         const { focusId, item } = this.props;

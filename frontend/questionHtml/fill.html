@@ -25,19 +25,20 @@
     var elements = JSON.parse(localStorage.stem);
     var newElements = '';
     for(var i = 0; i < elements.length; i++) {
+        var item = elements[i];
         var style = '';
-        style += "width:" + elements[i].style.width + "px;";
-        style += "height:" + elements[i].style.height + "px;";
-        style += "position:" + elements[i].style.position + ";";
-        style += "z-index:" + elements[i].style.zIndex + ";";
-        style += "top:" + elements[i].style.top + "px;";
-        style += "left:" + elements[i].style.left + "px;";
-        switch(elements[i].name) {
+        style += "width:" + item.style.width + "px;";
+        style += "height:" + item.style.height + "px;";
+        style += "position:" + item.style.position + ";";
+        style += "z-index:" + item.style.zIndex + ";";
+        style += "top:" + item.style.top + "px;";
+        style += "left:" + item.style.left + "px;";
+        switch(item.name) {
             default: break;
-            case "text": style += "color:" + elements[i].style.color + ";";
-                style += "font-size:" + elements[i].style.fontSize + "px;";
-                newElements += "<div style='"+ style + "'>" + elements[i].content + "</div>"; break;
-            case "image": newElements += "<img alt='图片' src='" + elements[i].src + "' style='"+ style + "'/>"; break;
+            case "text": style += "color:" + item.style.color + ";";
+                style += "font-size:" + item.style.fontSize + "px;";
+                newElements += "<div style='"+ style + "'>" + item.content + "</div>"; break;
+            case "image": newElements += "<img alt='图片' src='" + item.src + "' style='"+ style + "'/>"; break;
         }
     }
     document.getElementById('fill').innerHTML = newElements;
