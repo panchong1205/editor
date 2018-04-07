@@ -1,40 +1,35 @@
-/**created by panchong on 2018/2/24**/
-import React, { Component } from 'react'
-import { ActionCreators as UndoActionCreators } from 'redux-undo'
-import { connect } from 'react-redux'
+/** created by panchong on 2018/2/24* */
+import React, { Component } from 'react';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { connect } from 'react-redux';
 
-class UndoRedo extends Component{
-    constructor() {
-        super();
-    }
+class UndoRedo extends Component {
     render() {
         return [
-            <button onClick={() => { this.props.onUndo(); }} disabled={!this.props.canUndo}>
-                Undo
+            <button type="button" onClick={() => { this.props.onUndo(); }} disabled={!this.props.canUndo}>
+                <img src={require('../../../image/editor/icon_6.png')} alt="" />
+                <p>撤销</p>
             </button>,
-            <button onClick={() => { this.props.onRedo(); }} disabled={!this.props.canRedo}>
-                Redo
+            <button type="button" onClick={() => { this.props.onRedo(); }} disabled={!this.props.canRedo}>
+                <img src={require('../../../image/editor/icon_7.png')} alt="" />
+                <p>重做</p>
             </button>,
-        ]
+        ];
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        canUndo: state.todos.past.length > 0,
-        canRedo: state.todos.future.length > 0
-    }
-}
+const mapStateToProps = state => ({
+    canUndo: state.editorState.past.length > 0,
+    canRedo: state.editorState.future.length > 0,
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onUndo: () => dispatch(UndoActionCreators.undo()),
-        onRedo: () => dispatch(UndoActionCreators.redo())
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    onUndo: () => dispatch(UndoActionCreators.undo()),
+    onRedo: () => dispatch(UndoActionCreators.redo()),
+});
 
 UndoRedo = connect(
     mapStateToProps,
-    mapDispatchToProps
-)(UndoRedo)
+    mapDispatchToProps,
+)(UndoRedo);
 
 export default UndoRedo;

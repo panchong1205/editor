@@ -1,12 +1,22 @@
-/**created by panchong on 2018/2/27**/
+/** created by panchong on 2018/2/27* */
 import React, { Component } from 'react';
 import Rnd from 'react-rnd';
 import store from '../../store';
 import { changeFocus, changeStyle } from '../../actions/actions';
+import * as device from '../deviceSize';
 
-export default class DragAndResize extends Component{
+export default class DragAndResize extends Component {
     static defaultProps = {
-        enableResizing: true,
+        enableResizing: {
+            top: true,
+            right: true,
+            bottom: true,
+            left: true,
+            topRight: true,
+            bottomRight: true,
+            bottomLeft: true,
+            topLeft: true
+        },
         disableDragging: false,
         className: '',
     };
@@ -26,19 +36,23 @@ export default class DragAndResize extends Component{
         }));
     };
     render() {
-        const { item, enableResizing, disableDragging, className } = this.props;
-        const { style } = item;
-        const { left, top, width, height, zIndex} = style;
+        const {
+            item, enableResizing, disableDragging, className, style,
+        } = this.props;
+        const {
+            left, top, width, height, zIndex,
+        } = style;
         return (
             <Rnd
                 className={className}
-                style={{backgroundColor: '#fff'}}
                 dragAxis="both"
-                size={{ width: width + 2,  height: height + 2 }}
+                size={{ width, height }}
                 position={{ x: left, y: top }}
                 z={zIndex}
                 minWidth={20}
                 minHeight={20}
+                maxWidth={device.width}
+                maxHeight={device.height}
                 resizeGrid={[1, 1]}
                 dragGrid={[1, 1]}
                 bounds="parent"
@@ -46,7 +60,9 @@ export default class DragAndResize extends Component{
                 onResize={this.handleResize}
                 onDragStart={this.handleFocus}
                 onDragStop={this.handleStop}
+                onDrag={e => { e.preventDefault(); }}
                 disableDragging={disableDragging}
+                enableResizing={enableResizing}
             >
                 {this.props.children}
             </Rnd>

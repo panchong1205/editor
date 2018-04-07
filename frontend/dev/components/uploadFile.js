@@ -48,7 +48,7 @@ export default class UploadFile extends React.Component {
                 this.props.onChangeUrl(info.file.response.data.path);
             }
             if (this.props.onChangeObj) {
-                this.props.onChangeObj(info);
+                this.props.onChangeObj(info.file.response.data);
             }
         } else if (info.file.status === 'error') {
             message.error('操作失败！');
@@ -79,19 +79,10 @@ export default class UploadFile extends React.Component {
                 return isLt1M;
             },
         };
-        if (this.props.type === 'button') {
-            return (
-                <Upload {...importSet}>
-                    {this.props.children}
-                </Upload>
-            );
-        }
-        if (this.props.type === 'itself') {
-            return (
-                <Upload {...importSet}>
-                    <img alt="" src={this.state.src ? `${this.state.src}?k=${moment().format('X')}` : defaultImage} className={this.props.className} />
-                </Upload>
-            );
-        }
+        return (
+            <Upload {...importSet}>
+                {this.props.children}
+            </Upload>
+        );
     }
 }

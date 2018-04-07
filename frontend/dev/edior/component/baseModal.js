@@ -1,7 +1,7 @@
-/**created by panchong on 2018/2/24**/
+/** created by panchong on 2018/2/24* */
 import newElementId from './newElementId';
 
-export default class baseModal{
+export default class baseModal {
     constructor() {
         this.id = newElementId();
         this.key = newElementId();

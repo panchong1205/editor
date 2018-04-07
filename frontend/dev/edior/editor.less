@@ -1,14 +1,131 @@
-.editorContainer{
-  width: 900px;
-  height: 1650px;
-  margin: auto;
-  border: solid 1px #cccccc;
-  position: relative;
-  input, textarea{
-    border: none;
-    outline: none!important;
-  }
-}
-.focus{
-  border: solid 1px #cf1322!important;
+.editor{
+    .editorContainer{
+        width: 900px;
+        height: 1650px;
+        margin: 42px 0 0 0;
+        border: solid 1px #cccccc;
+        position: relative;
+        outline: none;
+        background-image: url("../../image/editor/grid.png");
+        background-repeat: repeat;
+        background-position: 0px;
+        input, textarea{
+            border: none;
+            outline: none;
+        }
+        textarea{
+            resize: none;
+            background: none!important;
+        }
+        textarea::-webkit-scrollbar { /*滚动条整体样式*/
+            width: 4px !important; /*高宽分别对应横竖滚动条的尺寸*/
+        }
+
+        textarea::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+            border-radius: 2px !important;
+            background: #ccc !important;
+        }
+
+        textarea::-webkit-scrollbar-track { /*滚动条里面轨道*/
+            border: none !important;
+            border-radius: 0 !important;
+            background: #fff !important;
+        }
+        textarea::-webkit-input-placeholder { /* WebKit browsers */
+            color: #CCCCCC;
+        }
+        textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #CCCCCC;
+        }
+        textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #CCCCCC;
+        }
+        textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #CCCCCC;
+        }
+        .noneUserSelect{
+            -webkit-user-select: none;
+            -moz-user-select:none;
+            -o-user-select:none;
+            -ms-user-select:none;
+        }
+        .userModify{
+            user-modify: read-write;
+            -webkit-user-modify: read-write;
+        }
+        .defaultBack{
+            background-color: #ffffff;
+        }
+        .ant-checkbox-disabled + span{
+            color: #333!important;
+        }
+        .contextMenu{
+            .ant-menu-sub.ant-menu-inline {
+                box-shadow: 2px 2px 5px #666!important;
+            }
+            .ant-menu-submenu-title{
+                display: none!important;
+            }
+            .ant-menu-item:hover, .ant-menu-item-active{
+                width: 100%!important;
+                color: #333!important;
+                background-color: #E8E9EA!important;
+            }
+
+        }
+    }
+    .editorTool{
+        background-color: #dedede;
+        height: 40px;
+        width: 100%;
+        margin: auto;
+        position: absolute;
+        top: -41px;
+    }
+    .focus{
+        border: solid 1px #cf1322!important;
+    }
+    .setBoard{
+        .ant-card-head{
+            background-color: #dedede;
+            min-height: 40px!important;
+            padding: 0 15px!important;
+            .ant-card-head-title{
+                padding: 0!important;
+                line-height: 40px;
+            }
+        }
+        .ant-card-body{
+            padding: 10px 15px!important;
+        }
+        .setList{
+            width: 100%;
+            min-height: 30px;
+            background-color: #dedede;
+            li{
+                height: 100%;
+            }
+            li.active{
+                background-color: #ffffff;
+            }
+        }
+        .ant-slider{
+            margin: 22px 0!important;
+            .ant-slider-mark{
+                top: -22px!important;
+            }
+        }
+        input{
+            width: 80%;
+            border: solid 1px #dedede;
+        }
+        p{
+            margin-top: 10px;
+        }
+    }
+    .setBoard.image{
+        input[type='number']{
+            width: 50%;
+        }
+    }
 }

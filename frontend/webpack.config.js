@@ -1,14 +1,15 @@
-/**created by panchong on 2018/2/11**/
+/** created by panchong on 2018/2/11* */
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // installed via npm
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
     entry: './main.js',
     output: {
-        path:  path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].[hash].js',
         publicPath: '/',
     },
@@ -23,29 +24,35 @@ module.exports = {
                         presets: ['env', 'react', 'stage-0'],
                         plugins: [
                             'transform-runtime',
-                            ['import', { 'libraryName': 'antd', 'style': 'css' }]
+                            ['import', {libraryName: 'antd', style: 'css'}],
                         ],
-                    }
-                }
+                    },
+                },
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{
-                    loader: 'css-loader',
-                    options: {
-                        minimize: true // css压缩
-                    }
-                }] }),
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true, // css压缩
+                        },
+                    }],
+                }),
             },
             {
                 test: /\.less$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{
-                    loader: 'css-loader',
-                    options: {
-                        minimize: true // css压缩
-                    }
-                }, 'less-loader'] }),
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true, // css压缩
+                        },
+                    }, 'less-loader'],
+                }),
             },
             {
                 test: /\.(jpg|jpeg|png|gif)$/,
@@ -54,22 +61,22 @@ module.exports = {
                     limit: 8192,
                     name: '[name].[hash].[ext]',
                     outputPath: 'images/',
-                }
+                },
             },
             {
                 test: /\.html$/,
-                use: [ {
+                use: [{
                     loader: 'html-loader',
                     options: {
-                        minimize: true
-                    }
+                        minimize: true,
+                    },
                 }],
             },
             {
-                loader: 'image-webpack-loader',// 压缩图片文件
+                loader: 'image-webpack-loader', // 压缩图片文件
                 options: {
                     bypassOnDebug: true,
-                }
+                },
             },
             {
                 test: /\.(woff|woff2|svg|eot|ttf|otf)$/,
@@ -77,20 +84,22 @@ module.exports = {
                 options: {
                     minimize: true,
                     outputPath: 'font/',
-                }
-            }
-        ]
+                },
+            },
+        ],
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(), //js压缩
         new webpack.DefinePlugin({
-            DEV_STATE: JSON.stringify(JSON.parse(process.env.DEV || 'false'))
+            DEV_STATE: JSON.stringify(JSON.parse(process.env.DEV || 'false')),
+            "process.env": {
+                NODE_ENV: JSON.stringify("production"),
+            },
         }),
         new ExtractTextPlugin('css/[id].[hash].css'),
         new HtmlWebpackPlugin({
             // 压缩配置
             minify: {
-                removeAttributeQuotes: true         // 去掉标签上属性的引号
+                removeAttributeQuotes: true, // 去掉标签上属性的引号
             },
             hash: true,
             template: path.join(__dirname, '/index-tmpl.html'),
@@ -102,7 +111,10 @@ module.exports = {
                 root: __dirname,
                 verbose: true,
                 dry: false,
-            }
+            },
         ),
+        new CopyWebpackPlugin([{
+            from: 'questionHtml/**/*', to: './',
+        }]),
     ],
 };

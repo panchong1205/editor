@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#app{
+}
+html, body{
+    font-family:"Helvetica Neue", "Helvetica", "PingFang SC","Hiragino Sans GB","Microsoft YaHei", "Arial", "sans-serif"!important;
+    min-width:1160px;
+    background-color: #E5E5E5!important;
+}
+ul,li{
+    list-style: none;
+}
+ul,p{
+    padding:0;
+    margin:0;
+}
+a,a:focus,a:visited,a:hover{
+    text-decoration: none;
+    text-underline: none;
+}
+select,option {
+    outline: none!important;
+    background-color: #fff;
+    border-radius: 0!important;
+}
+button{
+    outline:none;
+    border:none;
+    background: none;
+    margin:0;
+    border-radius: 2px!important;
+    cursor: pointer;
+}
+button[disabled], select[disabled], a[disabled]{
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+a[disabled] {
+    color: #7f7f7f;
+}
+iframe::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+}
+
+iframe::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 5px;
+    background: #ccc;
+}
+
+iframe::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    border: none;
+    border-radius: 0;
+    background: #fff;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.cursor-default{
+    cursor: default!important;
+}
+.cursor-text{
+    cursor: text!important;
+}
+.defaultBtnSize{
+    width: 109px;
+    height:33px;
+    font-size: 14px;
+}
+/*灰色按钮*/
+.grayBtn{
+    border:solid 1px #ccc;
+    color: #000;
+    background: #f2f2f2;
+}
+.grayBtn:hover{
+    border:solid 1px #14a0f2;
+    color: #fff;
+    background: #14a0f2;
+}
+.grayBtn:active{
+    border:solid 1px #048ddd;
+    color: #fff;
+    background: #048ddd;
+}
+/*黄色按钮*/
+.yellowBtn{
+    color: #fff;
+    background: #e9b813;
+}
+.yellowBtn:hover{
+    color: #fff;
+    background: #ffad42;
+}
+.yellowBtn:active{
+    color: #fff;
+    background: #fd9711;
+}
+/*蓝色按钮*/
+.blueBtn{
+    color: #fff;
+    background: #038ddc;
+}
+.blueBtn:hover{
+    color: #fff;
+    background: #14a0f2;
+}
+.blueBtn:active{
+    color: #fff;
+    background: #048ddd;
+}
+/*白色按钮*/
+.whiteBtn{
+    color: #333;
+    background: #fff;
+}
+.whiteBtn:hover{
+    color: #333;
+    background: #f2f2f2;
+}
+.whiteBtn:active{
+    color: #fff;
+    background: #038ddc;
+}
+/*红色按钮*/
+.redBtn{
+    color: #fff;
+    background: #fd4141;
+}
+.redBtn:hover{
+    color: #fff;
+    background: #ff6e6e;
+}
+.redBtn:active{
+    color: #fff;
+    background: #e61f1f;
+}
+/*绿色按钮*/
+.greenBtn{
+    color: #fff;
+    background: #5cb85c;
+}
+.greenBtn:hover{
+    color: #fff;
+    background: #4cae4c;
+}
+.greenBtn:active{
+    color: #fff;
+    background: #4cae4c;
+}
+.blueBg{
+    background-color: #21AAF5;
+    color: #ffffff;
+}
+.redBg{
+    background-color: #FB6236;
+    color: #ffffff;
+}
+.grayBg{
+    background-color: #6d6d6d;
+}
+.redFont{
+    color: #fd4141;
+}
+.blackFont{
+    color: #333333;
+}
+.blueFont{
+    color: #0000FF!important;
+}
+.fs14{
+    font-size: 14px;
+}
+.fs16{
+    font-size: 16px;
+}
+.fs18{
+    font-size: 18px;
+}
+input{
+    outline:none!important;
+    border:none;
+    margin:0;
+    border-radius: 0;
+    background-color: #fff;
+}
+input[disabled]{
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #cccccc;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #cccccc;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #cccccc;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #cccccc;
+}
+textarea{
+    outline:none!important;
+}
+input[type="checkbox"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+/*清除浮动*/
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+}
+.clearfix {
+    zoom: 1;
+}
+/*列表操作*/
+.buttons{
+    color: #169BD5;
+    button{
+        width: 40px;
+    }
+    // 上传视频按钮
+    span{
+        button{
+            width: 60px;
+            color: #169BE0;
+        }
+    }
+}
