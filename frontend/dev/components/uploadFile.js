@@ -60,7 +60,7 @@ export default class UploadFile extends React.Component {
         const fileSize = this.props.fileSize;
         const importSet = {
             name: 'file',
-            action: 'http://58.215.195.202:8088/new/api/question/uploadEditor',
+            action: '',
             // action: this.props.action,
             data: this.props.data ? this.props.data : {},
             headers: {
